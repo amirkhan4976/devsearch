@@ -1,0 +1,25 @@
+{% extends "testapp/index.html" %}
+
+{% block title %} {% endblock %}
+{% block content %}
+  <!-- Main Section -->
+  <main class="messagePage my-xl">
+    <div class="content-box">
+      <div class="message">
+        <a class="backButton" href="{% url 'inbox' %}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17.51 3.87L15.73 2.1L5.84 12l9.9 9.9l1.77-1.77L9.38 12l8.13-8.13z"/></svg>
+</a>
+          <h2 class="message__subject">{{ message.subject }}</h2>
+          {% if message.sender.id %}
+          <a href="{% url 'profile' message.sender.id %}" class="message__author">{{ message.sender_name }}</a>
+          {% else %}
+            <p class="message__author">{{ message.sender_name }}</p>
+          {% endif %}
+          <p class="message__date">{{ message.created_at }}</p>
+          <div class="message__body">{{ message.body|linebreaksbr }}</div>
+      </div>
+    </div>
+  </main>
+
+  {% endblock %}
+
+<!--          <a href="{% url 'profile' message.sender.id %}" class="message__author">{{ message.sender_name }}</a>-->

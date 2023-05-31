@@ -1,0 +1,21 @@
+{% extends "testapp/index.html" %}
+
+{% block title %}View Photo{% endblock %}
+{% block content %}
+
+<div class="container">
+    <a href="{% url 'home' %}">Home</a>
+</div>
+
+{% if photomodel_list %}
+    {% for photo in photomodel_list %}
+        <div class="container">
+            <ul>
+                {% load static %}
+                <li><a href="{% static 'testapp/img' %}/{{ photo }}">{{ photo }}</a></li>
+            </ul>
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% endblock %}

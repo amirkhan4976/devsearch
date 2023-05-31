@@ -1,0 +1,14 @@
+{% extends "testapp/index.html" %}
+
+{% block title %}Confirm Delete{% endblock %}
+{% block content %}
+
+<p>Are you sure you want to delete the article: {{ article }}?</p>
+
+<form method="POST">
+  {% csrf_token %}
+    <input type="submit" value="Yes, delete.">
+    <input type="submit" value="Cancel" onclick="window.location.href='{% url 'all' %}'; return false">
+</form>
+
+{% endblock %}

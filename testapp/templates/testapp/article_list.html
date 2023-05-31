@@ -1,0 +1,25 @@
+{% extends "testapp/index.html" %}
+
+{% block title %}Article List{% endblock %}
+{% block content %}
+
+<p>User: {{request.user}}</p>
+{% if article_list %}
+    {% for article in article_list %}
+        <ul>
+            <li>
+                <a href="{% url 'detail-article' article.id %}">{{ article }}</a>
+                {% if request.user == article.owner %}
+                    (<a href="{% url 'update-article' article.id %}">Edit</a> | <a href="{% url 'delete-article' article.id %}">Delete</a>)
+                {% endif %}
+            </li>
+        </ul>
+    {% endfor %}
+{% endif %}
+
+<p><a href="{% url 'create-article' %}">Create article</a> </p>
+<div>
+    <p><a href="{% url 'home' %}">Home</a></p>
+</div>
+
+{% endblock %}

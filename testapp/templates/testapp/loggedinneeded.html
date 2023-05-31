@@ -1,0 +1,13 @@
+{% extends "testapp/index.html" %}
+
+{% block title %}Logged in needed{% endblock %}
+{% block content %}
+
+<body>
+<h4>To view this page log in is required. You have logged in so you got the access. Bravo!! Enjoy</h4>
+<div>
+    <p><a href="{% url 'logout' %}">Logout</a></p>
+    <p><a href="{% url 'home' %}">Home</a> </p>
+</div>
+
+{% endblock %}

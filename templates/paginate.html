@@ -1,0 +1,38 @@
+<!-- <div class="pagination">
+    <ul class="container">
+        
+        {% if page_obj.has_previous %}
+            <li><a href="?search_query={{ search_query }}&page={{ page_obj.previous_page_number }}" class="btn">&#10094; Prev</a></li>
+        {% endif %}
+        {% for page in custom_range %}
+            {% if page == page_obj.number %}
+                <li><a href="?search_query={{ search_query }}&page={{ page }}" class="btn btn--sub">{{ page }}</a></li>
+            {% else %}
+                <li><a href="?search_query={{ search_query }}&page={{ page }}" class="btn">{{ page }}</a></li>
+            {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+            <li><a href="?search_query={{ search_query }}&page={{ page_obj.next_page_number }}" class="btn">Next &#10095;</a></li>
+        {% endif %}
+    </ul>
+  </div> -->
+
+
+<div class="pagination">
+    <ul class="container">
+        
+        {% if page_obj.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number }}" class="btn page-link" data-page="{{ page_obj.previous_page_number }}">&#10094; Prev</a></li>
+        {% endif %}
+        {% for page in custom_range %}
+            {% if page == page_obj.number %}
+                <li><a href="?page={{ page }}" class="btn btn--sub page-link" data-page="{{ page }}">{{ page }}</a></li>
+            {% else %}
+                <li><a href="?page={{ page }}" class="btn page-link" data-page="{{ page }}">{{ page }}</a></li>
+            {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}" class="btn page-link" data-page="{{ page_obj.next_page_number }}">Next &#10095;</a></li>
+        {% endif %}
+    </ul>
+</div>

@@ -1,0 +1,43 @@
+{% extends "testapp/index.html" %}
+
+{% block title %}Create/Update Project{% endblock %}
+{% block content %}
+
+<!-- Main Section -->
+<main class="formPage my-xl">
+    <div class="content-box">
+        <div class="formWrapper">
+            <a class="backButton" href="{% url 'account' %}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17.51 3.87L15.73 2.1L5.84 12l9.9 9.9l1.77-1.77L9.38 12l8.13-8.13z"/></svg>
+</a>
+            <br>
+
+            <form class="form" method="POST" enctype="multipart/form-data">
+                <!-- Input:Text -->
+                {% csrf_token %}
+
+                {% for field in form %}
+                <div class="form__field">
+                    <label for="formInput#text">{{ field.label }}</label>
+                    {{ field }}
+                </div>
+                {% endfor %}
+
+                <div class="form__field">
+                    {% for tag in project.tags.all %}
+                        <p class="project-tag tag tag--pill tag--main" data-tag="{{ tag.id }}" data-project="{{ project.id }}">{{ tag.name }} &#215;</p>
+                    {% endfor %}
+                </div>
+
+                <div class="form__field">
+                    <label>Tags</label>
+                    <textarea class="input" name="new_tags" placeholder="add tags here ..."></textarea>
+                </div>
+
+                <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
+            </form>
+            <a href="{% url 'projects' %}"><button>Cancel</button></a>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

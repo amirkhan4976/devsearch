@@ -1,0 +1,45 @@
+{% extends "testapp/index.html" %}
+
+{% block title %}Send Message{% endblock %}
+{% block content %}
+<main class="formPage my-xl">
+    <div class="content-box">
+        <div class="formWrapper">
+            <a class="backButton" href="{% url 'profile' recipient.id %}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17.51 3.87L15.73 2.1L5.84 12l9.9 9.9l1.77-1.77L9.38 12l8.13-8.13z"/></svg></a>
+            <br>
+
+            <form class="form" action="" method="POST" enctype="application/x-www-form-urlencoded">
+                {% csrf_token %}
+                {% if request.user.is_authenticated == False %}
+                <div class="form__field">
+                    <label for="formInput#text">{{ form.sender_name.label }}</label>
+                    {{ form.sender_name }}
+                    {{ form.errors }}
+                </div>
+                <div class="form__field">
+                    <label for="formInput#text">{{ form.sender_email.label }}: </label>
+                    {{ form.sender_email }}
+                    {{ form.errors }}
+                </div>
+
+                {% endif %}
+
+                <div class="form__field">
+                    <label for="formInput#text">{{ form.subject.label }}: </label>
+                    {{ form.subject }}
+                    {{ form.errors }}
+                </div>
+
+                <div class="form__field">
+                    <label for="formInput#text">{{ form.body.label }}: </label>
+                    {{ form.body }}
+                    {{ form.errors }}
+                </div>
+
+                <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
+            </form>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

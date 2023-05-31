@@ -1,0 +1,24 @@
+{% extends "testapp/index.html" %}
+
+{% block title %}Confirm Delete{% endblock %}
+{% block content %}
+
+
+<div class="content-box">
+  <div class="formWrapper">
+      <a class="backButton" href="#"><i class="im im-angle-left"></i></a>
+      <br>
+
+      <p>Are you sure you want to delete the: {{ object }}?</p>
+
+      <form class="form" method="POST">
+        {% csrf_token %}
+          <a href="{{ request.GET.next }}" class="btn btn--sub btn--lg  my-md">Cancel</a>
+          <input class="btn btn--sub btn--lg  my-md" type="submit" value="Yes, delete" />
+      </form>
+  </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "testapp/index.html" %}
+
+{% block title %}{{ article }}{% endblock %}
+{% block content %}
+
+{% load humanize %} <!-- https://docs.djangoproject.com/en/4.2/ref/contrib/humanize/ -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="container">
+  <span style="margin: 1em 1em 1em 1em">
+    Last Updated: {{ article.updated_at|naturaltime }}
+    {% if article.owner == user %}
+      <a href="{% url 'update-article' article.id %}"><i class="fa fa-pencil"></i></a>
+      <a href="{% url 'delete-article' article.id %}"><i class="fa fa-trash"></i></a>
+    {% endif %}
+  </span>
+</div>
+
+<div class="container" align="center">
+
+  <h1>{{ article.title }}</h1>
+  <p>{{ article.text }}</p>
+
+  <p><a href="{% url 'all' %}">All article list</a></p>
+  <p><a href="{% url 'home' %}">Home</a></p>
+
+</div>
+
+{% endblock %}

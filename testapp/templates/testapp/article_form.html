@@ -1,0 +1,149 @@
+{% extends "testapp/index.html" %}
+
+{% block title %}Create Article{% endblock %}
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'testapp/css/article_form.css' %}">
+
+<form class="form" method="post" enctype="application/x-www-form-urlencoded">
+    {% csrf_token %}
+    {% load crispy_forms_tags %}
+    {{ form|crispy }}
+    <input type="submit" value="Submit">
+    <input type="submit" value="Cancel" onclick="window.location.href='{% url 'all' %}';return false">
+</form>
+
+<div class="container">
+    <div class="row row-cols-2" >
+        <div class="col">
+            <div class="row">
+                <div class="col"><div class="box"></div></div>
+                <div class="col"><div class="box"></div></div>
+            </div>
+        </div>
+        <div class="col"><div class="box"></div></div>
+        <div class="col"><div class="box"></div></div>
+        <div class="col"><div class="box"></div></div>
+        <div class="col"><div class="box"></div></div>
+        <div class="col"><div class="box"></div></div>
+        <div class="col"><div class="box"></div></div>
+        <div class="col"><div class="box"></div></div>
+    </div>
+</div>
+
+<div class="container">
+    <table class="table table-hover table-info table-striped table-sm">
+        <thead class="table table-active">
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Age</th>
+        </thead>
+        <tbody>
+            <tr class="table-primary">
+                <td>Amir</td>
+                <td>Khan</td>
+                <td>26</td>
+            </tr>
+
+            <tr>
+                <td>Altab</td>
+                <td>Hussain</td>
+                <td>27</td>
+            </tr>
+
+            <tr>
+                <td>Jamal</td>
+                <td>Hussain</td>
+                <td>29</td>
+            </tr>
+
+            <tr>
+                <td>Manjur</td>
+                <td>Alam</td>
+                <td>21</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="container">
+    <form>
+        <label for="email" class="form-label">Email</label>
+        <input type="email" id="email" value="Example@email.com" class="form-control-sm">
+
+        <select class="form-select">
+            <option>One</option>
+            <option>Two</option>
+            <option>Three</option>
+            <option>Four</option>
+            <option>Five</option>
+        </select>
+        <button class="btn btn-outline-secondary">Submit</button>
+    </form>
+</div>
+
+<div class="container">
+    <form>
+        <div class="form-check">
+            <input type="checkbox" id="email" class="form-check-input">
+            <label for="email" class="form-check-label">Email</label>
+        </div>
+        <button class="btn btn-outline-secondary">Submit</button>
+    </form>
+</div>
+
+
+<div class="container">
+    <form>
+        <div class="form-check form-switch form-check-inline">
+            <input type="checkbox" id="email" class="form-check-input">
+            <label for="email" class="form-check-label">Email</label>
+        </div>
+
+
+        <div class="form-check form-switch form-check-inline">
+            <input type="checkbox" id="username" class="form-check-input">
+            <label for="username" class="form-check-label">Username</label>
+        </div>
+
+
+        <div class="form-check form-switch form-check-inline">
+            <input type="checkbox" id="first-name" class="form-check-input">
+            <label for="first-name" class="form-check-label">First Name</label>
+        </div>
+
+        <div class="form-check form-switch form-check-inline">
+            <input type="checkbox" id="last-name" class="form-check-input">
+            <label for="last-name" class="form-check-label">Last Name</label>
+        </div>
+
+        <button class="btn btn-outline-secondary">Submit</button>
+    </form>
+</div>
+
+<div class="container">
+    <form>
+        <div class="input-group input-group-sm">
+            <div class="input-group-text">$</div>
+            <div class="form-floating">
+                <input type="number" id="text" placeholder="Enter dollar amount" class="form-control">
+                <label for="text">Dollar amount</label>
+            </div>
+            <button class="btn btn-outline-primary">+</button>
+        </div>
+        <button class="btn btn-outline-dark">Submit</button>
+    </form>
+</div>
+
+<script>
+    const form = document.querySelector("form")
+    form.addEventListener('submit', e => {
+        if (!form.checkValidity()) {
+            e.preventDefault()
+        }
+        form.classList.add('was-validated')
+    })
+</script>
+
+{% endblock %}
